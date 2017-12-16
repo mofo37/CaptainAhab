@@ -3,7 +3,7 @@ import * as React from "react";
 import { Form, Item, Input, Toast, Icon } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
-import Login from "../../stories/screens/Login";
+import Register from "../../stories/screens/Register";
 
 export interface Props {
 	navigation: any;
@@ -13,14 +13,14 @@ export interface State {}
 
 @inject("loginStore")
 @observer
-export default class LoginContainer extends React.Component<Props, State> {
+export default class RegisterContainer extends React.Component<Props, State> {
 	emailInput: any;
 	pwdinput: any;
 	login() {
 		this.props.loginStore.validateForm();
 		if (this.props.loginStore.isValid) {
 			this.props.loginStore.clearStore();
-			this.props.navigation.navigate("Main");
+			this.props.navigation.navigate("Drawer");
 		} else {
 			Toast.show({
 				text: "Enter Valid Email & password!",
@@ -32,7 +32,6 @@ export default class LoginContainer extends React.Component<Props, State> {
 	}
 	render() {
 		const form = this.props.loginStore;
-		console.log(this.props.navigation);
 		const Fields = (
 			<Form>
 				<Item error={form.emailError ? true : false}>
@@ -61,6 +60,6 @@ export default class LoginContainer extends React.Component<Props, State> {
 			</Form>
 		);
 
-		return <Login loginForm={Fields} navigation={this.props.navigation} onLogin={() => this.login()} />;
+		return <Register loginForm={Fields} navigation={this.props.navigation} onLogin={() => this.login()} />;
 	}
 }

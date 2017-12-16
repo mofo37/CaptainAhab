@@ -1,37 +1,34 @@
 import React from "react";
-import { TabNavigator } from "react-navigation";
+import { TabNavigator, StackNavigator } from "react-navigation";
 import { Root } from "native-base";
-// import { Dimensions } from "react-native";
-import firebase from "firebase";
-import "firebase/firestore";
-
-// const deviceWidth = Dimensions.get("window").width;
+import DismissableStackNavigator from './DismissableStackNav';
 
 import Login from "./container/LoginContainer";
+import Register from "./container/RegisterContainer";
 import Home from "./container/HomeContainer";
 import BlankPage from "./container/BlankPageContainer";
 import Sidebar from "./container/SidebarContainer";
 
-
-// Initialize Firebase
-firebase.initializeApp({
-	apiKey: "AIzaSyAd9-_GPC8kfDZjkhwnrkRJnKfU00HH8U8",
-	authDomain: "captainahab-ce472.firebaseapp.com",
-	databaseURL: "https://captainahab-ce472.firebaseio.com",
-	projectId: "captainahab-ce472",
-	storageBucket: "",
-	messagingSenderId: "856646189335"
-});
-
-export const auth = firebase.auth()
-export const db = firebase.firestore();;
-
-const App = TabNavigator({
-	Home: {
-		screen: Home,
-	},	
+const LoginNav = DismissableStackNavigator({
 	Login: {
 		screen: Login,
+		navigationOptions: {
+			header: null,
+		},
+	},
+	Register: {
+		screen: Register,
+		navigationOptions: {
+			header: null,
+		},
+	},
+}, {
+		mode: 'card',
+	});
+
+const MainNav = TabNavigator({
+	Home: {
+		screen: Home,
 	},
 	Notifications: {
 		screen: BlankPage,
@@ -40,12 +37,23 @@ const App = TabNavigator({
 		screen: Sidebar,
 	},
 }, {
-		tabBarPosition: 'top',
+		tabBarPosition: 'bottom',
 		animationEnabled: true,
 		initialRouteName: 'Home',
 		tabBarOptions: {
-			activeTintColor: '#e91e63',
+		activeTintColor: '#e91e63',
 		},
+	});
+
+const App = StackNavigator({
+	Main: {
+		screen: MainNav,
+	},
+	Credentials: {
+		screen: LoginNav,
+	},
+}, {
+		mode: 'modal',
 	});
 
 

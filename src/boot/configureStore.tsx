@@ -1,12 +1,12 @@
-import MainStore from "../store/DomainStore/HomeStore";
-import LoginStore from "../store/ViewStore/LoginViewStore";
+import MainStore from "../stores/HomeStore";
+import LoginStore from "../stores/LoginStore";
 
 export default function() {
 	const mainStore = MainStore;
-	const loginForm = LoginStore;
+	const loginStore = LoginStore;
 
 	return {
-		loginForm,
+		loginStore,
 		mainStore,
 	};
 }

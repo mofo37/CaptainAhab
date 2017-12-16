@@ -1,7 +1,7 @@
 import { types } from "mobx-state-tree";
 
 const Login = types
-	.model("List", {
+	.model("LoginStore", {
 		email: types.optional(types.string, ""),
 		password: types.optional(types.string, ""),
 		emailError: types.optional(types.string, ""),

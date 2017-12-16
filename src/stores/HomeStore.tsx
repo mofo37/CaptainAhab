@@ -5,8 +5,7 @@ const cc = require('cryptocompare')
 // .then(coinList => {
 //   console.log(coinList)
 async function getBitcoin(){
-	let coinList = await cc.priceFull(['BTC', 'ETH', 'LTC'], ['USD', 'EUR', 'CNY'])
-	console.log(coinList);
+	let coinList = await cc.priceFull(['BTC', 'ETH', 'LTC'], ['USD', 'EUR', 'CNY']);
 	return coinList;
 };
 
@@ -19,12 +18,12 @@ const List = types
 	.actions(self => {
 		function fetchItems(data) {
 			(self.items = data), (self.isLoading = false);	
-	}
+		}
 		const getBitcoinList = flow(function*(){
 			self.isLoading = true;
 			try {
 				let bitcoinPrice = yield getBitcoin();
-				self.bitcoinPrices = bitcoinPrice;
+				// self.bitcoinPrices = bitcoinPrice;
 				self.isLoading =false;
 			} catch(e) {
 				console.log(e)
