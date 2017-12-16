@@ -14,6 +14,7 @@ export interface State {}
 @observer
 export default class HomeContainer extends React.Component<Props, State> {
 	componentWillMount() {
+		this.props.mainStore.getBitcoinList();
 		this.props.mainStore.fetchItems(data);
 	}
 	render() {
