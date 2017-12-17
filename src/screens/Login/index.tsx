@@ -15,7 +15,7 @@ class Login extends React.Component<Props, State> {
 		return (
 			<Container style={styles.container}>
 				<Content >
-					<Icon style={{marginLeft: 15}} name='ios-close-circle-outline' onPress={() => this.props.screenProps.dismiss() }/>
+					{/* <Icon style={{marginLeft: 15}} name='ios-close-circle-outline' onPress={() => this.props.screenProps.dismiss() }/> */}
 					<Body style={{ alignItems: "center", marginTop: 50 }}>
 						<Icon name="flash" style={{ fontSize: 104 }} />
 						<Title>ReactNativeSeed.com</Title>

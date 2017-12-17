@@ -2,6 +2,7 @@
 import * as React from "react";
 import { Form, Item, Input, Toast, Icon } from "native-base";
 import { observer, inject } from "mobx-react/native";
+import firebase from "firebase";
 
 import Register from "../../screens/Register";
 
@@ -21,6 +22,12 @@ export default class RegisterContainer extends React.Component<Props, State> {
 	register() {
 		this.props.registerStore.validateForm();
 		if (this.props.registerStore.isValid) {
+			let { email, password } = this.props.registerStore;
+			firebase.auth()
+				.createUserWithEmailAndPassword(email, password)
+				.catch(error => {
+					console.log(error.message);
+				});
 			this.props.registerStore.clearStore();
 			//TODO: register to Firebase then Nav to wallet
 		} else {

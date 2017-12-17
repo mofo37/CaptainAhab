@@ -1,7 +1,7 @@
 import React from "react";
 import { TabNavigator, StackNavigator } from "react-navigation";
 import { Root } from "native-base";
-import DismissableStackNavigator from './DismissableStackNav';
+// import DismissableStackNavigator from './DismissableStackNav';
 import { Icon } from "native-base";
 
 import Login from "./container/LoginContainer";
@@ -11,8 +11,15 @@ import Notification from "./container/NotificationContainer";
 import Analytics from "./container/AnalyticsContainer";
 import Wallet from "./container/WalletContainer";
 import Settings from "./container/SettingsContainer";
+// import Onboarding from "./screens/Onboarding";
 
-const LoginNav = DismissableStackNavigator({
+const LoginNav = StackNavigator({
+	// Onboarding: {
+	// 	screen: Onboarding,
+	// 	navigationOptions: {
+	// 		header: null,
+	// 	},
+	// },
 	Login: {
 		screen: Login,
 		navigationOptions: {
@@ -90,14 +97,14 @@ const MainNav = TabNavigator({
 	});
 
 const App = StackNavigator({
-	Main: {
-		screen: MainNav,
+	Credentials: {
+		screen: LoginNav,
 		navigationOptions: {
 			header: null,
 		},
 	},
-	Credentials: {
-		screen: LoginNav,
+	Main: {
+		screen: MainNav,
 		navigationOptions: {
 			header: null,
 		},

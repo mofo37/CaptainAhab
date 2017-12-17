@@ -20,9 +20,8 @@ export default class LoginContainer extends React.Component<Props, State> {
 	login() {
 		this.props.loginStore.validateForm();
 		if (this.props.loginStore.isValid) {
-			this.props.loginStore.clearStore();
-			//TODO: login to Firebase then Nav to wallet
-
+			//TODO
+			this.props.loginStore.clearStore();			
 		} else {
 			Toast.show({
 				text: "Enter Valid Email & password!",

@@ -23,10 +23,12 @@ const Register = types
 		function passwordOnChange(pwd) {
 			self.password = pwd;
 			validatePassword();
+			validateConfirmPassword();
 		}
 		function confirmPasswordOnChange(pwd) {
 			self.confirmPassword = pwd;
 			validateConfirmPassword();
+			validatePassword();
 		}
 		function validatePassword() {
 			const alphaNumeric = /[^a-zA-Z0-9 ]/i.test(self.password) ? "Only alphanumeric characters" : undefined;
@@ -55,6 +57,8 @@ const Register = types
 			self.emailError = "";
 			self.password = "";
 			self.passwordError = "";
+			self.confirmPassword = "";
+			self.confirmPasswordError = "";
 		}
 		return { emailOnChange, validateEmail, passwordOnChange,confirmPasswordOnChange, validatePassword, validateForm, clearStore, validateConfirmPassword };
 	});
