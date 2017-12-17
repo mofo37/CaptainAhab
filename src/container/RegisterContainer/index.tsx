@@ -3,24 +3,26 @@ import * as React from "react";
 import { Form, Item, Input, Toast, Icon } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
-import Register from "../../stories/screens/Register";
+import Register from "../../screens/Register";
 
 export interface Props {
 	navigation: any;
-	loginStore: any;
+    registerStore: any;
+    screenProps: any;
 }
 export interface State {}
 
-@inject("loginStore")
+@inject("registerStore")
 @observer
 export default class RegisterContainer extends React.Component<Props, State> {
 	emailInput: any;
 	pwdinput: any;
-	login() {
-		this.props.loginStore.validateForm();
-		if (this.props.loginStore.isValid) {
-			this.props.loginStore.clearStore();
-			this.props.navigation.navigate("Drawer");
+	confirmpwdinput: any;
+	register() {
+		this.props.registerStore.validateForm();
+		if (this.props.registerStore.isValid) {
+			this.props.registerStore.clearStore();
+			//TODO: register to Firebase then Nav to wallet
 		} else {
 			Toast.show({
 				text: "Enter Valid Email & password!",
@@ -31,7 +33,7 @@ export default class RegisterContainer extends React.Component<Props, State> {
 		}
 	}
 	render() {
-		const form = this.props.loginStore;
+		const form = this.props.registerStore;
 		const Fields = (
 			<Form>
 				<Item error={form.emailError ? true : false}>
@@ -57,9 +59,24 @@ export default class RegisterContainer extends React.Component<Props, State> {
 						secureTextEntry={true}
 					/>
 				</Item>
+
+                <Item error={form.confirmPasswordError ? true : false} last>
+					<Icon active name="unlock" />
+					<Input
+						placeholder="Password"
+						ref={c => (this.confirmpwdinput = c)}
+						value={form.confirmPassword}
+						onBlur={() => form.validateConfirmPassword()}
+						onChangeText={e => form.confirmPasswordOnChange(e)}
+						secureTextEntry={true}
+					/>
+				</Item>
 			</Form>
 		);
 
-		return <Register loginForm={Fields} navigation={this.props.navigation} onLogin={() => this.login()} />;
+		return <Register registerForm={Fields} navigation={this.props.navigation} 
+			onRegister={() => this.register()}
+            screenProps={this.props.screenProps}
+        />;
 	}
 }

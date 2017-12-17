@@ -29,6 +29,7 @@ export default function(stores) {
 				Roboto: require("native-base/Fonts/Roboto.ttf"),
 				Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
 				Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+				SimpleLineIcons: require("@expo/vector-icons/fonts/SimpleLineIcons.ttf"),
 			});
 
 			this.setState({ isReady: true });

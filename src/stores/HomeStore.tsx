@@ -22,7 +22,8 @@ const List = types
 		const getBitcoinList = flow(function*(){
 			self.isLoading = true;
 			try {
-				let bitcoinPrice = yield getBitcoin();
+				yield getBitcoin()
+				// let bitcoinPrice = yield getBitcoin();
 				// self.bitcoinPrices = bitcoinPrice;
 				self.isLoading =false;
 			} catch(e) {

@@ -3,11 +3,12 @@ import * as React from "react";
 import { Form, Item, Input, Toast, Icon } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
-import Login from "../../stories/screens/Login";
+import Login from "../../screens/Login";
 
 export interface Props {
 	navigation: any;
 	loginStore: any;
+	screenProps: any;
 }
 export interface State {}
 
@@ -20,7 +21,8 @@ export default class LoginContainer extends React.Component<Props, State> {
 		this.props.loginStore.validateForm();
 		if (this.props.loginStore.isValid) {
 			this.props.loginStore.clearStore();
-			this.props.navigation.navigate("Main");
+			//TODO: login to Firebase then Nav to wallet
+
 		} else {
 			Toast.show({
 				text: "Enter Valid Email & password!",
@@ -32,7 +34,6 @@ export default class LoginContainer extends React.Component<Props, State> {
 	}
 	render() {
 		const form = this.props.loginStore;
-		console.log(this.props.navigation);
 		const Fields = (
 			<Form>
 				<Item error={form.emailError ? true : false}>
@@ -61,6 +62,8 @@ export default class LoginContainer extends React.Component<Props, State> {
 			</Form>
 		);
 
-		return <Login loginForm={Fields} navigation={this.props.navigation} onLogin={() => this.login()} />;
+		return <Login loginForm={Fields} navigation={this.props.navigation} onLogin={() => this.login()}
+			screenProps={this.props.screenProps}
+		/>;
 	}
 }

@@ -2,12 +2,15 @@ import React from "react";
 import { TabNavigator, StackNavigator } from "react-navigation";
 import { Root } from "native-base";
 import DismissableStackNavigator from './DismissableStackNav';
+import { Icon } from "native-base";
 
 import Login from "./container/LoginContainer";
 import Register from "./container/RegisterContainer";
-import Home from "./container/HomeContainer";
-import BlankPage from "./container/BlankPageContainer";
-import Sidebar from "./container/SidebarContainer";
+import Prices from "./container/PricesContainer";
+import Notification from "./container/NotificationContainer";
+import Analytics from "./container/AnalyticsContainer";
+import Wallet from "./container/WalletContainer";
+import Settings from "./container/SettingsContainer";
 
 const LoginNav = DismissableStackNavigator({
 	Login: {
@@ -27,19 +30,60 @@ const LoginNav = DismissableStackNavigator({
 	});
 
 const MainNav = TabNavigator({
-	Home: {
-		screen: Home,
+	Prices: {
+		screen: Prices,
+		navigationOptions: {
+			header: null,
+			tabBarIcon: ({}) => (
+				<Icon
+				  name="ios-pricetag"
+				/>
+			),
+		},
+	},
+	Analytics: {
+		screen: Analytics,
+		navigationOptions: {
+			header: null,
+			tabBarIcon: ({}) => (
+				<Icon name="md-analytics"
+				/>
+			)
+		},
+	},
+	Wallet: {
+		screen: Wallet,
+		navigationOptions: {
+			header: null,
+			tabBarIcon: ({}) => (
+				<Icon name="ios-cash"
+				/>
+			)
+		},
 	},
 	Notifications: {
-		screen: BlankPage,
+		screen: Notification,
+		navigationOptions: {
+			header: null,
+			tabBarIcon: ({}) => (
+				<Icon name="ios-notifications"
+				/>
+			)
+		},
 	},
 	Settings: {
-		screen: Sidebar,
+		screen: Settings,
+		navigationOptions: {
+			header: null,
+			tabBarIcon: ({}) => (
+				<Icon name="md-settings" />
+			)
+		},
 	},
 }, {
 		tabBarPosition: 'bottom',
 		animationEnabled: true,
-		initialRouteName: 'Home',
+		initialRouteName: 'Wallet',
 		tabBarOptions: {
 		activeTintColor: '#e91e63',
 		},
@@ -48,9 +92,15 @@ const MainNav = TabNavigator({
 const App = StackNavigator({
 	Main: {
 		screen: MainNav,
+		navigationOptions: {
+			header: null,
+		},
 	},
 	Credentials: {
 		screen: LoginNav,
+		navigationOptions: {
+			header: null,
+		},
 	},
 }, {
 		mode: 'modal',
