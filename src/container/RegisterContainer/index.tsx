@@ -9,16 +9,34 @@ import Register from "../../screens/Register";
 export interface Props {
 	navigation: any;
     registerStore: any;
-    screenProps: any;
+	screenProps: any;
+	loginStore: any;
 }
 export interface State {}
 
-@inject("registerStore")
+@inject("registerStore", "loginStore")
 @observer
 export default class RegisterContainer extends React.Component<Props, State> {
 	emailInput: any;
 	pwdinput: any;
 	confirmpwdinput: any;
+	removeListener;
+	componentDidMount() {
+		this.removeListener = firebase.auth().onAuthStateChanged(user => {
+			if (user) {
+				console.log(user)
+				this.props.loginStore.loggedInChange(true);
+				this.props.navigation.navigate('Main');
+			} else {
+				
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.removeListener()
+	}
+
 	register() {
 		this.props.registerStore.validateForm();
 		if (this.props.registerStore.isValid) {

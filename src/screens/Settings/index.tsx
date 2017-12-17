@@ -2,10 +2,12 @@ import * as React from "react";
 import { Text, Container, Content, Button } from "native-base";
 import styles from "./styles";
 import { View } from "react-native";
+import firebase from 'firebase';
 
-// import LoggedInSettings from './LoggedInSettings';
+import LoggedInSettings from './LoggedInSettings';
 export interface Props {
 	navigation: any;
+	loginStore: any;
 }
 export interface State {}
 
@@ -28,9 +30,10 @@ function RenderNonLoggedIn({navigation}) {
 
 export default class Settings extends React.Component<Props, State> {
 	render() {
-		return (
-			<RenderNonLoggedIn navigation={this.props.navigation}/>
-			
-		);
+		console.log(firebase.auth().currentUser)
+		if (!firebase.auth().currentUser) {
+			return <RenderNonLoggedIn navigation={this.props.navigation}/>;
+		}
+		return <LoggedInSettings navigation={this.props.navigation} loginStore={this.props.loginStore}/>;
 	}
 }

@@ -8,6 +8,7 @@ export interface Props {
 	onLogin: Function;
 	navigation: any;
 	screenProps: any;
+	onGoogleLogin: any;
 }
 export interface State {}
 class Login extends React.Component<Props, State> {
@@ -30,7 +31,7 @@ class Login extends React.Component<Props, State> {
 						</Button>
 					</View>
 					<View padder>
-						<Button style={{backgroundColor: '#FF5722'}}block onPress={() => this.props.onLogin()}>
+						<Button style={{backgroundColor: '#FF5722'}}block onPress={() => this.props.onGoogleLogin()}>
 							<Icon name="logo-google" />
 							<Text>Login with Google</Text>
 						</Button>

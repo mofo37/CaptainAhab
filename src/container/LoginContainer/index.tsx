@@ -2,26 +2,53 @@
 import * as React from "react";
 import { Form, Item, Input, Toast, Icon } from "native-base";
 import { observer, inject } from "mobx-react/native";
-
+import firebase from "firebase";
 import Login from "../../screens/Login";
+import Expo from 'expo';
 
 export interface Props {
 	navigation: any;
 	loginStore: any;
 	screenProps: any;
 }
-export interface State {}
+export interface State {
+	removeListener
+ }
 
 @inject("loginStore")
 @observer
 export default class LoginContainer extends React.Component<Props, State> {
 	emailInput: any;
 	pwdinput: any;
+	removeListener
+	componentDidMount() {
+		this.removeListener = firebase.auth().onAuthStateChanged(user => {
+			if (user) {
+				console.log(user)
+				this.props.loginStore.loggedInChange(true);
+				this.props.navigation.navigate('Main');
+			} else {
+				
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.removeListener()
+	}
+
 	login() {
 		this.props.loginStore.validateForm();
 		if (this.props.loginStore.isValid) {
 			//TODO
-			this.props.loginStore.clearStore();			
+			let { email, password } = this.props.loginStore;
+			firebase.auth()
+				.signInWithEmailAndPassword(email, password)
+				.catch(error => {
+					// Handle Errors here.
+					console.log(error.message);
+				});
+			this.props.loginStore.clearStore();
 		} else {
 			Toast.show({
 				text: "Enter Valid Email & password!",
@@ -31,6 +58,25 @@ export default class LoginContainer extends React.Component<Props, State> {
 			});
 		}
 	}
+
+	async signInWithGoogleAsync() {
+		try {
+		  const result = await Expo.Google.logInAsync({
+			androidClientId: '',
+			iosClientId: '',
+			scopes: ['profile', 'email'],
+		  });
+	  
+		  if (result.type === 'success') {
+			return result.accessToken;
+		  } else {
+			return {cancelled: true};
+		  }
+		} catch(e) {
+		  return {error: true};
+		}
+	  }
+
 	render() {
 		const form = this.props.loginStore;
 		const Fields = (
@@ -62,7 +108,7 @@ export default class LoginContainer extends React.Component<Props, State> {
 		);
 
 		return <Login loginForm={Fields} navigation={this.props.navigation} onLogin={() => this.login()}
-			screenProps={this.props.screenProps}
+			screenProps={this.props.screenProps} onGoogleLogin= {() => this.onGoogleLogin()}
 		/>;
 	}
 }

@@ -2,18 +2,31 @@ import * as React from "react";
 import { Container, Content, List, ListItem, Text, Icon, Left, Body, Right, Separator } from 'native-base';
 import activeStyles from "./activeStyles";
 import { View } from 'react-native';
+import firebase from 'firebase';
+
 export interface Props {
-	navigation: any;
+  navigation: any;
+  loginStore: any;
 }
 export interface State {}
 export default class LoggedInSettings extends React.Component<Props, State> {
+
+  signOutUser = () => {
+    firebase.auth().signOut()
+      .then(()=> {
+        this.props.loginStore.loggedInChange(false);
+        this.props.navigation.navigate('Credentials');
+      })
+      .catch(e => console.log(e));
+  }
+
 	render() {
 		return (
 			<Container style={activeStyles.container}>
 				<Content >
           <Text style={activeStyles.text}>Settings</Text>
           <Text style={activeStyles.name}>Name</Text>
-          <Text style={activeStyles.email}>email@email.com</Text>
+          <Text style={activeStyles.email}>{firebase.auth().currentUser.email}</Text>
           <List>
             <Separator bordered>
               <Text>Account</Text>
@@ -57,7 +70,7 @@ export default class LoggedInSettings extends React.Component<Props, State> {
                 <Icon name="arrow-forward" />
               </Right>
             </ListItem>
-            <ListItem last>
+            <ListItem last onPress={() => this.signOutUser()}>
               <Left>
                 <Text>Sign Out</Text>
               </Left>
