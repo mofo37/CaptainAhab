@@ -59,7 +59,7 @@ export default class LoginContainer extends React.Component<Props, State> {
 		}
 	}
 
-	async signInWithGoogleAsync() {
+	async onGoogleLogin() {
 		try {
 		  const result = await Expo.Google.logInAsync({
 			androidClientId: '',
