@@ -3,8 +3,8 @@ import { Container, Content, Text, Card, CardItem, Body, Icon} from "native-base
 import Carousel from 'react-native-snap-carousel';
 import styles from "./styles";
 import { Dimensions } from 'react-native'
-import { VictoryPie , VictoryChart, VictoryBar} from 'victory-native';
-import { random, range, round } from "lodash";
+// import { VictoryPie , VictoryChart, VictoryBar} from 'victory-native';
+import { random, range } from "lodash";
 
 let {width} = Dimensions.get('window')
 export interface Props {

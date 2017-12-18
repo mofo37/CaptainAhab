@@ -13,7 +13,7 @@ export interface Props {
 }
 export interface State {
 	removeListener
- }
+}
 
 @inject("loginStore")
 @observer
@@ -28,7 +28,7 @@ export default class LoginContainer extends React.Component<Props, State> {
 				this.props.loginStore.loggedInChange(true);
 				this.props.navigation.navigate('Main');
 			} else {
-				
+
 			}
 		});
 	}
@@ -61,20 +61,21 @@ export default class LoginContainer extends React.Component<Props, State> {
 
 	async onGoogleLogin() {
 		try {
-		  const result = await Expo.Google.logInAsync({
-			iosClientId: '856646189335-2ag72i42u0v68tehsqi58jhjv5shd5b4.apps.googleusercontent.com',
-			scopes: ['profile', 'email'],
-		  });
-	  
-		  if (result.type === 'success') {
-			return result.accessToken;
-		  } else {
-			return {cancelled: true};
-		  }
-		} catch(e) {
-		  return {error: true};
+			const result = await Expo.Google.logInAsync({
+				iosClientId: '856646189335-2ag72i42u0v68tehsqi58jhjv5shd5b4.apps.googleusercontent.com',
+				scopes: ['profile', 'email'],
+			});
+			if (result.type === 'success') {
+				var credential = firebase.auth.GoogleAuthProvider.credential(result.idToken)
+				  firebase.auth().signInWithCredential(credential);
+					return true;
+				} else {
+				return { cancelled: true };
+			}
+		} catch (e) {
+			return { error: true };
 		}
-	  }
+	}
 
 	render() {
 		const form = this.props.loginStore;
@@ -107,7 +108,7 @@ export default class LoginContainer extends React.Component<Props, State> {
 		);
 
 		return <Login loginForm={Fields} navigation={this.props.navigation} onLogin={() => this.login()}
-			screenProps={this.props.screenProps} onGoogleLogin= {() => this.onGoogleLogin()}
+			screenProps={this.props.screenProps} onGoogleLogin={() => this.onGoogleLogin()}
 		/>;
 	}
 }
