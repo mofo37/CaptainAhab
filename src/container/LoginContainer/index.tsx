@@ -62,8 +62,7 @@ export default class LoginContainer extends React.Component<Props, State> {
 	async onGoogleLogin() {
 		try {
 		  const result = await Expo.Google.logInAsync({
-			androidClientId: '',
-			iosClientId: '',
+			iosClientId: '856646189335-2ag72i42u0v68tehsqi58jhjv5shd5b4.apps.googleusercontent.com',
 			scopes: ['profile', 'email'],
 		  });
 	  
