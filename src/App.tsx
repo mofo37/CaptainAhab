@@ -10,6 +10,8 @@ import Prices from "./container/PricesContainer";
 import Notification from "./container/NotificationContainer";
 import Analytics from "./container/AnalyticsContainer";
 import Wallet from "./container/WalletContainer";
+import AddCoin from "./container/AddCoinContainer";
+
 import Settings from "./container/SettingsContainer";
 // import Onboarding from "./screens/Onboarding";
 
@@ -105,6 +107,12 @@ const App = StackNavigator({
 	},
 	Main: {
 		screen: MainNav,
+		navigationOptions: {
+			header: null,
+		},
+	},
+	AddCoin: {
+		screen: AddCoin, 
 		navigationOptions: {
 			header: null,
 		},
