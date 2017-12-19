@@ -3,10 +3,8 @@ import {
   Container,
   Content,
   Text,
-  List,
-  ListItem
 } from "native-base";
-
+import PriceCard from '../../shared/PriceCard';
 import styles from "./styles";
 export interface Props {
   navigation: any;
@@ -18,19 +16,16 @@ class Prices extends React.Component<Props, State> {
     return (
       <Container style={styles.container}>
         <Content>
-          <List>
-            {this.props.list.map((item, i) => (
-              <ListItem
+          <Text style={{fontSize: 40}}>Prices</Text>
+          {this.props.list.map((item, i) => (
+            <PriceCard
                 key={i}
-                onPress={() =>
-                  this.props.navigation.navigate("BlankPage", {
-                    name: { item }
-                  })}
-              >
-                <Text>{item}</Text>
-              </ListItem>
+                coinName={item.coinName}
+                coinTicker={item.coinTicker}
+                dailyPrice={item.dailyPrice}
+                price={item.price}
+            />
             ))}
-          </List>
         </Content>
       </Container>
     );
