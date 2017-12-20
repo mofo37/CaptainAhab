@@ -2,7 +2,7 @@ import * as React from "react";
 import { Container, Content, Text, Card, CardItem, Body, Icon} from "native-base";
 import Carousel from 'react-native-snap-carousel';
 import styles from "./styles";
-import { Dimensions } from 'react-native'
+import { Dimensions, TouchableOpacity } from 'react-native'
 // import { VictoryPie , VictoryChart, VictoryBar} from 'victory-native';
 import { random, range } from "lodash";
 
@@ -25,24 +25,25 @@ class Wallet extends React.Component<Props, State> {
 		};
 	  }
 	
-	coolCard = ({item}) => {
-		console.log(item)
+	coolCard = (item, navigation) => {
 		return (
-		<Card style={{width: width - 75, height: 200 }}>
-			<CardItem header>
-			<Text>{item.title}</Text>
-			</CardItem>
-			<CardItem>
-			<Body>
-				<Text>
-				{item.text}
-				</Text>
-			</Body>
-			</CardItem>
-			<CardItem footer>
-			<Text>Read</Text>
-			</CardItem>
-		</Card>
+		<TouchableOpacity onPress={() => navigation.navigate('Article')}>
+			<Card style={{width: width - 75, height: 200 }} >
+				<CardItem header>
+				<Text>{item.title}</Text>
+				</CardItem>
+				<CardItem>
+				<Body>
+					<Text>
+					{item.text}
+					</Text>
+				</Body>
+				</CardItem>
+				<CardItem footer>
+				<Text>Read</Text>
+				</CardItem>
+			</Card>
+			</TouchableOpacity>
 		)
 	}
 	getTransitionData() {
@@ -56,7 +57,7 @@ class Wallet extends React.Component<Props, State> {
 	  }
 	render() {
 		
-		let arr = [{text: 'COol Tex', title: 'SWeet Title'},
+		let arr = [{text: 'What Is the Blockchain', title: 'SWeet Title'},
 		{text: 'COol Tex', title: 'SWeet Title'},
 		{text: 'COol Tex', title: 'SWeet Title'},
 		{text: 'COol Tex', title: 'SWeet Title'},
@@ -77,7 +78,7 @@ class Wallet extends React.Component<Props, State> {
 					<Carousel
 						ref={(c) => { this._carousel = c; }}
 						data={arr}
-						renderItem={this.coolCard}
+						renderItem={(item) => this.coolCard(item, this.props.navigation)}
 						sliderWidth={width}
 						itemWidth={width - 75}
 						itemHeight={200}
@@ -86,7 +87,7 @@ class Wallet extends React.Component<Props, State> {
 					<Carousel
 						ref={(c) => { this._carousel = c; }}
 						data={arr}
-						renderItem={this.coolCard}
+						renderItem={(item) => this.coolCard(item, this.props.navigation)}
 						sliderWidth={width}
 						itemWidth={width - 75}
 						itemHeight={200}

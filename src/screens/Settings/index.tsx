@@ -30,7 +30,6 @@ function RenderNonLoggedIn({navigation}) {
 
 export default class Settings extends React.Component<Props, State> {
 	render() {
-		console.log(firebase.auth().currentUser)
 		if (!firebase.auth().currentUser) {
 			return <RenderNonLoggedIn navigation={this.props.navigation}/>;
 		}

@@ -24,6 +24,7 @@ class Prices extends React.Component<Props, State> {
                 coinTicker={item.coinTicker}
                 dailyPrice={item.dailyPrice}
                 price={item.price}
+                navigation={this.props.navigation}
             />
             ))}
         </Content>

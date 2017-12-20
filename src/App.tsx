@@ -11,17 +11,18 @@ import Notification from "./container/NotificationContainer";
 import Analytics from "./container/AnalyticsContainer";
 import Wallet from "./container/WalletContainer";
 import AddCoin from "./container/AddCoinContainer";
-
+import Article from "./container/ArticleContainer";
 import Settings from "./container/SettingsContainer";
-// import Onboarding from "./screens/Onboarding";
+import Onboarding from "./screens/Onboarding";
+import PriceDetails from "./screens/PriceDetails";
 
 const LoginNav = StackNavigator({
-	// Onboarding: {
-	// 	screen: Onboarding,
-	// 	navigationOptions: {
-	// 		header: null,
-	// 	},
-	// },
+	Onboarding: {
+		screen: Onboarding,
+		navigationOptions: {
+			header: null,
+		},
+	},
 	Login: {
 		screen: Login,
 		navigationOptions: {
@@ -38,9 +39,26 @@ const LoginNav = StackNavigator({
 		mode: 'card',
 	});
 
+	const PricesNav = StackNavigator({
+		Prices: {
+			screen: Prices,
+			navigationOptions: {
+				header: null,
+			},
+		},
+		PriceDetails: {
+			screen: PriceDetails,
+			navigationOptions: {
+				header: null,
+			},
+		},
+	}, {
+			mode: 'card',
+		});
+
 const MainNav = TabNavigator({
 	Prices: {
-		screen: Prices,
+		screen: PricesNav,
 		navigationOptions: {
 			header: null,
 			tabBarIcon: ({}) => (
@@ -113,6 +131,12 @@ const App = StackNavigator({
 	},
 	AddCoin: {
 		screen: AddCoin, 
+		navigationOptions: {
+			header: null,
+		},
+	},
+	Article: {
+		screen: Article, 
 		navigationOptions: {
 			header: null,
 		},

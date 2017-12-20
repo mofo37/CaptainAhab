@@ -24,7 +24,6 @@ export default class RegisterContainer extends React.Component<Props, State> {
 	componentDidMount() {
 		this.removeListener = firebase.auth().onAuthStateChanged(user => {
 			if (user) {
-				console.log(user)
 				this.props.loginStore.loggedInChange(true);
 				this.props.navigation.navigate('Main');
 			} else {

@@ -8,7 +8,9 @@ export interface Props {
   navigation: any;
   loginStore: any;
 }
-export interface State {}
+export interface State {
+  selected: 0
+}
 export default class LoggedInSettings extends React.Component<Props, State> {
 
   signOutUser = () => {
@@ -18,6 +20,10 @@ export default class LoggedInSettings extends React.Component<Props, State> {
         this.props.navigation.navigate('Credentials');
       })
       .catch(e => console.log(e));
+  }
+
+  onValueChange(value) {
+    this.setState({selected: value})
   }
 
 	render() {
@@ -33,9 +39,20 @@ export default class LoggedInSettings extends React.Component<Props, State> {
             </Separator>
             <ListItem style={{borderBottomColor: '#c9c9c9', borderBottomWidth: .7}}>
               <Left>
-                <Text>Main Currency</Text>
+                {/* <Picker
+                  iosHeader='Choose Your Currency'
+                  mode="dropdown"
+                  selectedValue={this.state.selected}
+                  onValueChange={this.onValueChange.bind(this)}
+                  style={{width: 300}}
+                >
+                  <Item label="Bitcoin" value={0} />
+                  <Item label="LiteCoin" value={1} />
+                  <Item label="Ethereum" value={2} />
+                  <Item label="Monero" value={3} />
+                  <Item label="Bitcoin Cash" value={4} />
+                </Picker> */}
               </Left>
-              <Body></Body>
               <Right>
                 <Icon name="arrow-forward" />
               </Right>
