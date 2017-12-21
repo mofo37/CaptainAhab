@@ -20,21 +20,6 @@ export interface State {
 export default class LoginContainer extends React.Component<Props, State> {
 	emailInput: any;
 	pwdinput: any;
-	removeListener
-	componentDidMount() {
-		this.removeListener = firebase.auth().onAuthStateChanged(user => {
-			if (user) {
-				this.props.loginStore.loggedInChange(true);
-				this.props.navigation.navigate('Main');
-			} else {
-
-			}
-		});
-	}
-
-	componentWillUnmount() {
-		this.removeListener()
-	}
 
 	login() {
 		this.props.loginStore.validateForm();

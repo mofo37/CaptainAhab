@@ -20,21 +20,6 @@ export default class RegisterContainer extends React.Component<Props, State> {
 	emailInput: any;
 	pwdinput: any;
 	confirmpwdinput: any;
-	removeListener;
-	componentDidMount() {
-		this.removeListener = firebase.auth().onAuthStateChanged(user => {
-			if (user) {
-				this.props.loginStore.loggedInChange(true);
-				this.props.navigation.navigate('Main');
-			} else {
-				
-			}
-		});
-	}
-
-	componentWillUnmount() {
-		this.removeListener()
-	}
 
 	register() {
 		this.props.registerStore.validateForm();
@@ -56,6 +41,7 @@ export default class RegisterContainer extends React.Component<Props, State> {
 			});
 		}
 	}
+	
 	render() {
 		const form = this.props.registerStore;
 		const Fields = (

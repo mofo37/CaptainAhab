@@ -4,8 +4,6 @@ import { Root } from "native-base";
 // import DismissableStackNavigator from './DismissableStackNav';
 import { Icon } from "native-base";
 
-import Login from "./container/LoginContainer";
-import Register from "./container/RegisterContainer";
 import Prices from "./container/PricesContainer";
 import Notification from "./container/NotificationContainer";
 import Analytics from "./container/AnalyticsContainer";
@@ -13,31 +11,9 @@ import Wallet from "./container/WalletContainer";
 import AddCoin from "./container/AddCoinContainer";
 import Article from "./container/ArticleContainer";
 import Settings from "./container/SettingsContainer";
-import Onboarding from "./screens/Onboarding";
 import PriceDetails from "./screens/PriceDetails";
 
-const LoginNav = StackNavigator({
-	Onboarding: {
-		screen: Onboarding,
-		navigationOptions: {
-			header: null,
-		},
-	},
-	Login: {
-		screen: Login,
-		navigationOptions: {
-			header: null,
-		},
-	},
-	Register: {
-		screen: Register,
-		navigationOptions: {
-			header: null,
-		},
-	},
-}, {
-		mode: 'card',
-	});
+
 
 	const PricesNav = StackNavigator({
 		Prices: {
@@ -117,12 +93,6 @@ const MainNav = TabNavigator({
 	});
 
 const App = StackNavigator({
-	Credentials: {
-		screen: LoginNav,
-		navigationOptions: {
-			header: null,
-		},
-	},
 	Main: {
 		screen: MainNav,
 		navigationOptions: {
@@ -146,7 +116,7 @@ const App = StackNavigator({
 	});
 
 
-export default () => (
+export default  () => (
 	<Root>
 		<App />
 	</Root>
