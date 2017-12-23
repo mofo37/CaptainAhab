@@ -15,31 +15,31 @@ import PriceDetails from "./screens/PriceDetails";
 
 
 
-	const PricesNav = StackNavigator({
-		Prices: {
-			screen: Prices,
-			navigationOptions: {
-				header: null,
-			},
+const PricesNav = StackNavigator({
+	Prices: {
+		screen: Prices,
+		navigationOptions: {
+			header: null,
 		},
-		PriceDetails: {
-			screen: PriceDetails,
-			navigationOptions: {
-				header: null,
-			},
+	},
+	PriceDetails: {
+		screen: PriceDetails,
+		navigationOptions: {
+			header: null,
 		},
-	}, {
-			mode: 'card',
-		});
+	},
+}, {
+		mode: 'card',
+	});
 
 const MainNav = TabNavigator({
 	Prices: {
 		screen: PricesNav,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({}) => (
+			tabBarIcon: ({ }) => (
 				<Icon
-				  name="ios-pricetag"
+					name="ios-pricetag"
 				/>
 			),
 		},
@@ -48,7 +48,7 @@ const MainNav = TabNavigator({
 		screen: Analytics,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({}) => (
+			tabBarIcon: ({ }) => (
 				<Icon name="md-analytics"
 				/>
 			)
@@ -58,7 +58,7 @@ const MainNav = TabNavigator({
 		screen: Wallet,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({}) => (
+			tabBarIcon: ({ }) => (
 				<Icon name="ios-cash"
 				/>
 			)
@@ -68,7 +68,7 @@ const MainNav = TabNavigator({
 		screen: Notification,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({}) => (
+			tabBarIcon: ({ }) => (
 				<Icon name="ios-notifications"
 				/>
 			)
@@ -78,7 +78,7 @@ const MainNav = TabNavigator({
 		screen: Settings,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({}) => (
+			tabBarIcon: ({ }) => (
 				<Icon name="md-settings" />
 			)
 		},
@@ -88,7 +88,7 @@ const MainNav = TabNavigator({
 		animationEnabled: true,
 		initialRouteName: 'Wallet',
 		tabBarOptions: {
-		activeTintColor: '#e91e63',
+			activeTintColor: '#e91e63',
 		},
 	});
 
@@ -100,13 +100,13 @@ const App = StackNavigator({
 		},
 	},
 	AddCoin: {
-		screen: AddCoin, 
+		screen: AddCoin,
 		navigationOptions: {
 			header: null,
 		},
 	},
 	Article: {
-		screen: Article, 
+		screen: Article,
 		navigationOptions: {
 			header: null,
 		},
@@ -116,7 +116,7 @@ const App = StackNavigator({
 	});
 
 
-export default  () => (
+export default () => (
 	<Root>
 		<App />
 	</Root>
