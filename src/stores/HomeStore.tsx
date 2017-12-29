@@ -4,8 +4,13 @@ const cc = require('cryptocompare')
 // cc.coinList()
 // .then(coinList => {
 //   console.log(coinList)
+ 
 async function getBitcoin(){
-	let coinList = await cc.priceFull(['BTC', 'ETH', 'LTC'], ['USD', 'EUR', 'CNY']);
+	let coinList = await cc.priceFull([
+	'BTC', 'ETH', 'LTC', 'XRP', 'BCH', 'ADA', 'MIOTA', 'DASH', 'XEM', 'XMR',
+	'EOS', 'BTG', 'NEO', 'QTUM', 'XLM', 'ETC', 'ETC', 'TRX', 'LSK', 'BCC', 
+	'XVG', 'ICX', 'ARDR', 'XRB', 'OMG', 'ZEC'],
+	 ['USD', 'EUR', 'CNY']);
 	return coinList;
 };
 
