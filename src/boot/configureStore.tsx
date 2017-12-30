@@ -1,11 +1,11 @@
-import MainStore from "../stores/HomeStore";
+import HomeStore from "../stores/HomeStore";
 import LoginStore from "../stores/LoginStore";
 import RegisterStore from "../stores/RegisterStore";
 import WalletStore from "../stores/WalletStore";
 import UpgradeStore from "../stores/UpgradeStore";
 
 export default function() {
-	const mainStore = MainStore;
+	const homeStore = HomeStore;
 	const loginStore = LoginStore;
 	const registerStore = RegisterStore;
 	const walletStore = WalletStore; 
@@ -13,7 +13,7 @@ export default function() {
 
 	return {
 		loginStore,
-		mainStore,
+		homeStore,
 		registerStore,
 		walletStore,
 		upgradeStore

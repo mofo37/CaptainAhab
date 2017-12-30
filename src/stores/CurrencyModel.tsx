@@ -1,7 +1,8 @@
 import { types } from "mobx-state-tree";
 
 export const CurrencyModel = types
-	.model("CurrencyModel", {
+	.model("CurrencyModel")
+	.props({
 		CHANGE24HOUR: types.optional(types.number, 0),
 		CHANGEDAY: types.optional(types.number, 0),
 		CHANGEPCT24HOUR: types.optional(types.number, 0),
@@ -21,11 +22,10 @@ export const CurrencyModel = types
 		SUPPLY: types.optional(types.number, 0),
 		TOSYMBOL: types.optional(types.string, ''),
 	})
+
 	.actions(() => {
-		return {};
-	});
-
-
+		return {}
+	  })
 
 export type Currency = typeof CurrencyModel.Type;
 

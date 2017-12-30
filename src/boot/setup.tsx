@@ -60,6 +60,8 @@ export default function(stores) {
 
 		componentWillMount() {
 			this.loadFonts();
+			stores.homeStore.getCurrenciesList();
+			
 		}
 		async loadFonts() {
 			await Expo.Font.loadAsync({

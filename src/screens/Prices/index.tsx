@@ -8,7 +8,7 @@ import PriceCard from '../../shared/PriceCard';
 import styles from "./styles";
 export interface Props {
   navigation: any;
-  list: any;
+  currencies: any;
 }
 export interface State {}
 class Prices extends React.Component<Props, State> {
@@ -16,17 +16,17 @@ class Prices extends React.Component<Props, State> {
     return (
       <Container style={styles.container}>
         <Content>
-          <Text style={{fontSize: 40}}>Prices</Text>
-          {this.props.list.map((item, i) => (
-            <PriceCard
+          <Text style={{fontSize: 40,}}>Prices</Text>
+          {this.props.currencies.map((item, i) => {
+            return <PriceCard
                 key={i}
-                coinName={item.coinName}
-                coinTicker={item.coinTicker}
-                dailyPrice={item.dailyPrice}
-                price={item.price}
+                coinName={item.FROMSYMBOL}
+                coinTicker={item.TOSYMBOL}
+                dailyPrice={item.CHANGEPCT24HOUR}
+                price={item.PRICE}
                 navigation={this.props.navigation}
             />
-            ))}
+          })}
         </Content>
       </Container>
     );
