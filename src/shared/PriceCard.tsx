@@ -3,7 +3,7 @@ import { Text, Card, CardItem, Body } from "native-base";
 import { Dimensions, View, TouchableOpacity } from 'react-native'
 let { width } = Dimensions.get('window')
 import colors from '../theme/colors';
-
+import math from '';
 interface Props {
     coinName: any;
     coinTicker: any;
@@ -34,7 +34,7 @@ export default function PriceCard(props: Props) {
                                 {`$${props.price}`}
                             </Text>
                             <Text style={{ color: colors.white, fontSize: 15, }}>
-                                {`(%${_.round(props.dailyPrice, 2)})`}
+                                {`(%${Math.round(props.dailyPrice)})`}
                             </Text>
                         </View>
                     </Body>
