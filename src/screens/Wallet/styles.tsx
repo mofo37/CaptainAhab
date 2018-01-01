@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import colors from '../../theme/colors';
 
 const styles: any = StyleSheet.create({
 	container: {
@@ -9,13 +10,15 @@ const styles: any = StyleSheet.create({
 		fontSize: 20,
 		textAlign: 'center',
 		marginBottom: 20,
-		alignItems: 'center'
+		alignItems: 'center',
+		color: colors.navy
 	},
 	total: {
 		marginTop: 20,
 		marginBottom: 10,
 		fontSize: 40,
-		textAlign: 'center'
+		textAlign: 'center',
+		color: colors.coral
 	},
 });
 export default styles;

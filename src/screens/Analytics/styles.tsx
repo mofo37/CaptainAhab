@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import {Dimensions} from 'react-native'
 const width = Dimensions.get("window").width;
+import colors from '../../theme/colors';
 
 const styles: any = StyleSheet.create({
 	container: {
@@ -24,11 +25,13 @@ const styles: any = StyleSheet.create({
 	button: {
 		marginTop: 15,
 		width: 150,
-		alignSelf: 'center'
+		alignSelf: 'center',
+		backgroundColor: colors.coral
 	},
 	text: {
 		textAlign: 'center',
 		fontSize: 28,
+		color: colors.navy
 	},
 });
 export default styles;

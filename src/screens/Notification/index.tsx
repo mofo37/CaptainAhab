@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Container, Content, Text, } from "native-base";
 import WhaleCard from '../../shared/WhaleCard';
+import colors from '../../theme/colors';
 
 import styles from "./styles";
 export interface Props {
@@ -14,7 +15,7 @@ class Notification extends React.Component<Props, State> {
 		return (
 			<Container style={styles.container}>
 				<Content>
-					<Text style={{fontSize: 40}}>Whales</Text>
+					<Text style={{fontSize: 40, color: colors.navy}}>Whales</Text>
 					{data.map((whale,i) => {
 						return <WhaleCard pic={whale.pic} coin={whale.coin} description={whale.description} id={whale.id} key={i}/>
 					})}

@@ -16,7 +16,7 @@ class Prices extends React.Component<Props, State> {
     return (
       <Container style={styles.container}>
         <Content>
-          <Text style={{fontSize: 40,}}>Prices</Text>
+          <Text style={styles.text}>Prices</Text>
           {this.props.currencies.map((item, i) => {
             return <PriceCard
                 key={i}

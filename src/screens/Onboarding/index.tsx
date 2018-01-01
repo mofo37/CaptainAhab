@@ -4,6 +4,7 @@ import { Container, Content, Text,Button } from "native-base";
 import stylesCool from "./styles";
 import { Dimensions, ImageBackground, StyleSheet } from 'react-native'
 import Swiper from 'react-native-swiper';
+import colors from '../../theme/colors';
 
 
 var styles = StyleSheet.create({
@@ -75,7 +76,7 @@ class Onboarding extends React.Component<Props, State> {
 						})}	
 					</Swiper>
 					<Button 
-						style={{ backgroundColor: '#FF5722', position: 'absolute',
+						style={{ backgroundColor: colors.coral, position: 'absolute',
 						alignSelf: 'center', width: 120,
 						top: height - 150 }} 
 						block 

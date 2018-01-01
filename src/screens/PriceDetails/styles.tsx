@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import colors from '../../theme/colors';
 
 const styles: any = StyleSheet.create({
 	container: {
@@ -21,7 +22,8 @@ const styles: any = StyleSheet.create({
 		marginTop: 20,
 		marginBottom: 10,
 		fontSize: 40,
-		textAlign: 'center'
+		textAlign: 'center',
+		color: colors.navy
 	},
 	input: {
 		height: 80, 

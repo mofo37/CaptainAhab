@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import colors from '../../theme/colors';
 
 const styles: any = StyleSheet.create({
 	container: {
-		backgroundColor: "#FBFAFA",
+		backgroundColor: colors.white,
 		paddingTop: 60,
 		alignItems: 'center',
 		flex: 1
@@ -12,7 +13,8 @@ const styles: any = StyleSheet.create({
 		alignItems: "center",
 	},
 	text: {
-		fontSize: 20,
+		color: colors.navy,
+		fontSize: 40,
 		marginBottom: 15,
 		alignItems: "center",
 	},

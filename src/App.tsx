@@ -12,7 +12,7 @@ import AddCoin from "./container/AddCoinContainer";
 import Article from "./container/ArticleContainer";
 import Settings from "./container/SettingsContainer";
 import PriceDetails from "./screens/PriceDetails";
-
+import colors from './theme/colors';
 
 
 const PricesNav = StackNavigator({
@@ -37,50 +37,61 @@ const MainNav = TabNavigator({
 		screen: PricesNav,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({ }) => (
-				<Icon
+			tabBarIcon: ({ tintColor, focused}) => {
+				return <Icon
+					style={{color: !focused ? colors.white : tintColor}}
 					name="ios-pricetag"
 				/>
-			),
+			},
 		},
 	},
 	Analytics: {
 		screen: Analytics,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({ }) => (
-				<Icon name="md-analytics"
+			tabBarIcon: ({ tintColor, focused}) => {
+				return <Icon
+					style={{color: !focused ? colors.white : tintColor}}
+					name="md-analytics"
 				/>
-			)
+			},
+
 		},
 	},
 	Wallet: {
 		screen: Wallet,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({ }) => (
-				<Icon name="ios-cash"
+			tabBarIcon: ({ tintColor, focused}) => {
+				return <Icon
+					style={{color: !focused ? colors.white : tintColor}}
+					name="ios-cash"
 				/>
-			)
+			},
 		},
 	},
 	Notifications: {
 		screen: Notification,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({ }) => (
-				<Icon name="ios-notifications"
+			tabBarIcon: ({ tintColor, focused}) => {
+				return <Icon
+					style={{color: !focused ? colors.white : tintColor}}
+					name="ios-notifications"
 				/>
-			)
+			},
 		},
 	},
 	Settings: {
 		screen: Settings,
 		navigationOptions: {
 			header: null,
-			tabBarIcon: ({ }) => (
-				<Icon name="md-settings" />
-			)
+			tabBarIcon: ({ tintColor, focused}) => {
+				return <Icon
+					style={{color: !focused ? colors.white : tintColor}}
+					name="md-settings"
+				/>
+			},
 		},
 	},
 }, {
@@ -88,9 +99,16 @@ const MainNav = TabNavigator({
 		animationEnabled: true,
 		initialRouteName: 'Wallet',
 		tabBarOptions: {
-			activeTintColor: '#e91e63',
+			activeTintColor: colors.navy,
+			activeBackgroundColor: colors.coral,
+			inactiveTintColor: colors.white,
+			showLabel: true,
+			style: {
+				backgroundColor: colors.navy,
+			}
 		},
-	});
+	}
+);
 
 const App = StackNavigator({
 	Main: {
