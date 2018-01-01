@@ -3,7 +3,6 @@ import { Text, Card, CardItem, Body } from "native-base";
 import { Dimensions, View, TouchableOpacity } from 'react-native'
 let { width } = Dimensions.get('window')
 import colors from '../theme/colors';
-import math from '';
 interface Props {
     coinName: any;
     coinTicker: any;
