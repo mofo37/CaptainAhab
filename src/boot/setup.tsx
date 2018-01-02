@@ -14,21 +14,9 @@ export interface State {
 	isLoggedIn: boolean,
 }
 
+
 import firebase from "firebase";
-import "firebase/firestore";
-
-// Initialize Firebase
-firebase.initializeApp({
-	apiKey: "AIzaSyAd9-_GPC8kfDZjkhwnrkRJnKfU00HH8U8",
-	authDomain: "captainahab-ce472.firebaseapp.com",
-	databaseURL: "https://captainahab-ce472.firebaseio.com",
-	projectId: "captainahab-ce472",
-	storageBucket: "",
-	messagingSenderId: "856646189335"
-});
-
-export const auth = firebase.auth()
-export const db = firebase.firestore();
+import {db} from './index'
 
 export default function (stores) {
 	return class Setup extends React.Component<Props, State> {
@@ -44,30 +32,20 @@ export default function (stores) {
 			};
 		}
 		removeListener
+
 		componentDidMount() {
 			this.removeListener = firebase.auth().onAuthStateChanged(user => {
 				if (user) {
-					db.collection("users").doc(user.uid)
-						.get()
-						.then(function (doc) {
-							if (doc.exists) {
-								console.log("Document data:", doc.data().walletId);
-							} else {
-								db.collection("wallets").add({
-									userId: user.uid,
-									total: 0,
-									coins: []
-								}).then(function (docRef) {
-									db.collection("users").doc(user.uid).set({
-										walletId: docRef.id
-									})
-								})
-							}
-						})
-						.catch(function (error) {
-							console.log("Error getting documents: ", error);
-						});
-					this.setState({ isLoggedIn: true });
+					db.collection("wallets").where('userId', '==', user.uid)
+					.get()
+					.then(querySnapshot => {
+					  querySnapshot.forEach(doc => {
+						console.log(doc.data())
+						this.setState({ isLoggedIn: true });
+					  });
+					})
+					.catch(error => console.log("Error getting documents: ", error));
+					
 				} else {
 					this.setState({ isLoggedIn: false });
 				}

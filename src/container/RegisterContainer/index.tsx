@@ -3,6 +3,7 @@ import * as React from "react";
 import { Form, Item, Input, Toast, Icon } from "native-base";
 import { observer, inject } from "mobx-react/native";
 import firebase from "firebase";
+import {db} from '../../boot/index';
 
 import Register from "../../screens/Register";
 
@@ -27,11 +28,24 @@ export default class RegisterContainer extends React.Component<Props, State> {
 			let { email, password } = this.props.registerStore;
 			firebase.auth()
 				.createUserWithEmailAndPassword(email, password)
+				.then(user => {
+					db.collection("wallets").add({
+						userId: user.uid,
+						total: 0,
+						coins: []
+					}).then(function (docRef) {
+						db.collection("Users").doc(user.uid).set({
+							walletId: docRef.id,
+							uid: user.uid,
+							email: user.email,
+							fiatCurrency: 'USD'
+						})
+					})
+				})
 				.catch(error => {
-					console.log(error.message);
+					console.log(error)
 				});
 			this.props.registerStore.clearStore();
-			//TODO: register to Firebase then Nav to wallet
 		} else {
 			Toast.show({
 				text: "Enter Valid Email & password!",
