@@ -8,7 +8,7 @@ import LoginNav from "../LoginNav";
 
 import getTheme from "../theme/components";
 import variables from "../theme/variables/platform";
-export interface Props {}
+export interface Props { }
 export interface State {
 	isReady: boolean,
 	isLoggedIn: boolean,
@@ -30,7 +30,7 @@ firebase.initializeApp({
 export const auth = firebase.auth()
 export const db = firebase.firestore();
 
-export default function(stores) {
+export default function (stores) {
 	return class Setup extends React.Component<Props, State> {
 		state: {
 			isReady: boolean,
@@ -47,13 +47,33 @@ export default function(stores) {
 		componentDidMount() {
 			this.removeListener = firebase.auth().onAuthStateChanged(user => {
 				if (user) {
-					this.setState({isLoggedIn: true});
+					db.collection("users").doc(user.uid)
+						.get()
+						.then(function (doc) {
+							if (doc.exists) {
+								console.log("Document data:", doc.data().walletId);
+							} else {
+								db.collection("wallets").add({
+									userId: user.uid,
+									total: 0,
+									coins: []
+								}).then(function (docRef) {
+									db.collection("users").doc(user.uid).set({
+										walletId: docRef.id
+									})
+								})
+							}
+						})
+						.catch(function (error) {
+							console.log("Error getting documents: ", error);
+						});
+					this.setState({ isLoggedIn: true });
 				} else {
-					this.setState({isLoggedIn: false});
+					this.setState({ isLoggedIn: false });
 				}
 			});
 		}
-	
+
 		componentWillUnmount() {
 			this.removeListener()
 		}
@@ -61,7 +81,7 @@ export default function(stores) {
 		componentWillMount() {
 			this.loadFonts();
 			stores.homeStore.getCurrenciesList();
-			
+
 		}
 		async loadFonts() {
 			await Expo.Font.loadAsync({
@@ -75,9 +95,9 @@ export default function(stores) {
 		}
 
 		render() {
-			if (!this.state.isReady ) {
+			if (!this.state.isReady) {
 				return <Expo.AppLoading />;
-			} else if (!this.state.isLoggedIn){
+			} else if (!this.state.isLoggedIn) {
 				return (
 					<StyleProvider style={getTheme(variables)}>
 						<Provider {...stores}>

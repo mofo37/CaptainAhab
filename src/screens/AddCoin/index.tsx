@@ -1,9 +1,10 @@
 import * as React from "react";
 import { View, TextInput, TouchableHighlight } from 'react-native'
-import { Container, Content, Text, Icon } from "native-base";
+import { Container, Content, Text, Icon, Button } from "native-base";
 import styles from "./styles";
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import ModalDropdown from 'react-native-modal-dropdown';
+import colors from '../../theme/colors';
 
 // import { Dimensions } from 'react-native'
 // let {width} = Dimensions.get('window')
@@ -71,6 +72,15 @@ class AddCoin extends React.Component<Props, State> {
                             dropdownTextStyle={styles.dropdown_3_dropdownTextStyle}
                             dropdownTextHighlightStyle={styles.dropdown_3_dropdownTextHighlightStyle}
                         />
+                        <Button
+                            style={{
+                                backgroundColor: colors.coral, width: 200
+                            }}
+                            block
+                            onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Text>Add Coin</Text>
+                        </Button>
                     </View>
                 </Content>
             </Container>
